@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		
+		
+		System.out.println("Enter your name;");
+		String name = input.nextLine();
+		
+		System.out.println("Enter your age: ");
+		int age = input.nextInt();
+	
+		System.out.print("Enter your height");
+		double height = input.nextDouble();
+		
+		
+		System.out.println("Hello "+name);
+		System.out.println("You are "+age);
+		System.out.println("Your height is"+height+"cm.");
+				
+    }
+   		
+	
+}
+        
+        
+
+   
