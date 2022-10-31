@@ -7,15 +7,16 @@ public class Main {
 		Scanner input = new Scanner(System.in);
 		
 		boolean x =true;
-		
+		int n2;
+		int n1;
        do { 
 
         try {
             System.out.print("Enter num 1: ");
-            int n1 = input.nextInt();
+            n1 = input.nextInt();
 
             System.out.print("Enter num 2: ");
-            int n2 = input.nextInt();
+             n2 = input.nextInt();
             int answer = n1/n2;
             System.out.println("Answer is: "+answer);
             x= false;   
@@ -24,16 +25,18 @@ public class Main {
         catch (ArithmeticException e) {
             System.out.println();
             System.out.println("You can't divide a number by zero Idiot !!");
+				      System.out.println();
         }
 	catch(InputMismatchException e){
 	    System.out.println();
-	    System.out.println("You can only divide a number with another fucking number OMFG BRUH !!");
+				System.out.println("You can't do that! try again!!");
+				System.out.println();
 	    input.next();
 	     	}
 			   
 	}  
-         while(x);		
-			
+         while(x);
+		
     }
    	
 	
