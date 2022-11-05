@@ -1,0 +1,87 @@
+
+import java.util.Scanner;
+public class Main {
+    
+    
+    static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args){
+        
+        
+        System.out.println("Solve for sum of all numbers");
+       
+    try{
+        while (true) {
+            jem();
+        }
+		     }
+		 catch(Exception e){
+		  	System.out.println();
+				System.out.println("Exception thrown: "+e);
+			}
+    
+       
+    }
+
+    public static void jem(){
+        int num1;
+        int num2;
+        int sum1=0;
+        int sum2=0;
+        int i=0;
+        int j=0; 
+		     int count1 = 0;
+        boolean again = true;
+        // variables //
+		
+		
+    System.out.print("How many numbers you want to add? : ");
+		 count1 = scanner.nextInt();
+	
+
+    while (i<count1){
+            System.out.print("Enter num "+(i+1)+": ");
+            num1 = scanner.nextInt();
+            i++;
+            sum1 = sum1+num1;
+        } 
+            System.out.println("Total = "+sum1);
+
+        // ask if the user want to continue  //
+     
+	
+    while (again) {  // infinite loop //
+    
+             System.out.println("Do you want to continue? ");                              
+             System.out.println("Type ( y ) if Yes, ( n ) if No: ");   
+             char choice2= scanner.next().charAt(0);                                 
+         
+ if(choice2 == 'y' || choice2 == 'Y'){
+             System.out.print("How many numbers you want? : ");
+             int count2 = scanner.nextInt();
+    
+        while (j<count2){
+              System.out.print("Enter num "+(j+1)+": ");
+              num2 = scanner.nextInt();
+              j++;
+              sum2 = sum2+num2;
+        } 
+   
+              System.out.println("Total is = "+sum2);
+              j=0;
+              sum2 =0; //to reset the initialization after every run//          
+			} // end of if // 
+			
+			else if (choice2 == 'n'){
+					System.out.println("k");
+					scanner.close();
+				  again = false;
+				  break;
+				}
+			
+			
+			
+    }// <-- end of infinite while loop // 
+			
+    }   // <-- end o jem method //  
+
+}
