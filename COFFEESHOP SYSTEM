@@ -42,26 +42,31 @@ public class coffeeshop {
         System.out.println("*  X. Cancel             (cancel order)       *"); // if the user change his mind
         System.out.println("*---------------------------------------------*"); 
         System.out.print("Choose your coffee: ");
-    for (i = 0; i <1; i++ ) { 
+ for (i = 0; i <1; i++ ) { 
             char choice = input.next().charAt(0);
        if (choice == 'a' || choice =='A'){ 
-                    System.out.println("You ordered Espresso! ");
-                        
-    for(int j = 0; j <1; j++){
+                      
+   for(int j = 0; j <1; j++){
+                    
+     if(espressostocks==0){ // this will run if stocks is zero 
+                    System.out.println("\nSorry out of stocks for Espresso :( ");
+                    order(); // go back to order method if stocks is zero
+          }        
+                    System.out.println("You ordered Espresso!");
                     System.out.print("Quantity: ");   
                     quantity=0;
-                  
-        if(input.hasNextInt()){ // input valid for A
+             
+      if(input.hasNextInt()){ // input valid for A
                     quantity = input.nextInt();
                     stocks =  espressostocks-quantity;
         }else{
-                    System.out.println("Invalid, please enter numbers: ");
+                    System.out.println("\nInvalid, please enter numbers: \n");
 
                     input.next();
                     j--;
         } //  end of input validation    
         if(quantity < 0){ // validation for negative numbers
-                    System.out.println("invalid");
+                    System.out.println("\nNumber can't be negative !\n");
 
                     j--;
                 } 
@@ -74,28 +79,36 @@ public class coffeeshop {
                 itemname="Espresso =    "+quantity+"            --          P"+espresso*quantity+"\n";
                 items = items+itemname;
                 total = total + quantity*espresso;
-                System.out.println("Espresso left = "+stocks);
+                System.out.println("Initial Payment: P"+total+"\n");  
                 espressostocks = stocks;
-                System.out.println("Initial Payment: P"+total); 
-            } // end of choice A    
-           
-        else if (choice == 'b' || choice =='B'){
-                    System.out.println("You ordered Cappuccino!");
+                System.out.println("Espresso left = "+stocks+"\n"); 
+                System.out.println("-----------------------------------------");
+                again();
+            } // end of choice A 
+          
+   else if (choice == 'b' || choice =='B'){
+                    
 
-        for(int j = 0; j <1; j++){
+    for(int j = 0; j <1; j++){
+          
+          if(cappuccinostocks==0){ // this will run if stocks is zero 
+                    System.out.println("\nSorry out of stocks for Cappuccino :( ");
+                    order(); // go back to order method if stocks is zero
+           }
+                    System.out.println("You ordered Cappuccino!");
                     System.out.print("Quantity: ");
                     quantity=0; 
          if(input.hasNextInt()){ // input valid for B
                     quantity = input.nextInt();
                     stocks =  cappuccinostocks-quantity;
         }else{
-                    System.out.println("Invalid, please enter numbers: ");
+                    System.out.println("\nInvalid, please enter numbers: \n");
 
                     input.next();
                     j--;
                 }    
         if(quantity < 0){ // validation for negative numbers
-                    System.out.println("invalid");
+                    System.out.println("\nNumber can't be negative !\n");
                     j--;
                 }
         if (quantity>cappuccinostocks)
@@ -107,15 +120,22 @@ public class coffeeshop {
                 itemname="Cappuccino =  "+quantity+"            --          P"+cappuccino*quantity+"\n";
                 items = items+itemname;
                 total = total + quantity*cappuccino;
-                System.out.println("Cappuccino left= "+stocks);
                 cappuccinostocks = stocks;
-                System.out.println("Initial Payment: P"+total);
+                System.out.println("Initial Payment: P"+total+"\n");
+                System.out.println("Cappuccino left= "+stocks+"\n");
+                System.out.println("-----------------------------------------");
+                again();
             } // end of choice B
 
         else if (choice == 'c' || choice =='C'){
-                    System.out.println("You ordered Latte!");
                     
+   
     for(int j = 0; j <1; j++){   
+          if(lattestocks==0){ // this will run if stocks is zero 
+                    System.out.println("\nSorry out of stocks for Latte :( ");
+                    order(); // go back to order method if stocks is zero
+           }
+                    System.out.println("You ordered Latte!");
                     System.out.print("Quantity: ");
                     quantity=0;  // reset the variable to zero 
         if(input.hasNextInt()){  // input valid for C
@@ -123,13 +143,13 @@ public class coffeeshop {
                     stocks = lattestocks-quantity;
                 }     
         else{
-                    System.out.println("Invalid, please enter numbers: ");
+                    System.out.println("\nInvalid, please enter numbers ! \n");
 
                     input.next();
                     j--;
                 }  
         if(quantity < 0){ // validation for negative numbers
-                    System.out.println("invalid");
+                    System.out.println("\nNumber can't be negative !\n");
 
                     j--;
                }
@@ -142,9 +162,11 @@ public class coffeeshop {
                   itemname="Latte =       "+quantity+"            --          P"+latte*quantity+"\n";
                   items = items+itemname;
                   total = total + quantity*latte; 
-                  System.out.println("Latte left = "+stocks);
                   lattestocks = stocks;
-                  System.out.println("Initial Payment: P"+total); 
+                  System.out.println("Initial Payment: P"+total+"\n"); 
+                  System.out.println("Latte left = "+stocks+"\n");
+                  System.out.println("-----------------------------------------");
+                  again();
             } // end of choice c
         else if (choice=='x'){
                   bill(); 
