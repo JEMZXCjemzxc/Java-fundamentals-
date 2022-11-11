@@ -8,6 +8,10 @@ public class coffeeshop {
         static int j=0, espresso =50, cappuccino=65, latte=100; //ints coffees
         static String item, itemname, name; // strings
         static String items ="";
+        static int espressostocks = 10;
+        static int cappuccinostocks = 5;
+        static int lattestocks = 6;
+        static int stocks = 0;
   public static void main(String[] args){
         greet();
         order(); // calling the methods 
@@ -28,13 +32,13 @@ public class coffeeshop {
     }
     // method for order 
     public static void order(){  
-
+ 
         int i;
         System.out.println();
         System.out.println("*---------------------------------------------*");
-        System.out.println("*  A. Espresso   = P50   (stocks left = 10    *");
-        System.out.println("*  B. Cappuccino = P65   (stocks left = 5     *");
-        System.out.println("*  C. Latte      = P100  (stocks left = 3     *");
+        System.out.println("*  A. Espresso   = P50   (stocks left = "+espressostocks+"    *");
+        System.out.println("*  B. Cappuccino = P65   (stocks left = "+cappuccinostocks+"     *");
+        System.out.println("*  C. Latte      = P100  (stocks left = "+lattestocks+"     *");
         System.out.println("*  X. Cancel             (cancel order)       *"); // if the user change his mind
         System.out.println("*---------------------------------------------*"); 
         System.out.print("Choose your coffee: ");
@@ -46,28 +50,32 @@ public class coffeeshop {
     for(int j = 0; j <1; j++){
                     System.out.print("Quantity: ");   
                     quantity=0;
-        if(input.hasNextInt()){ // input validation
-                    quantity = input.nextInt();          
+                  
+        if(input.hasNextInt()){ // input valid for A
+                    quantity = input.nextInt();
+                    stocks =  espressostocks-quantity;
         }else{
                     System.out.println("Invalid, please enter numbers: ");
 
                     input.next();
                     j--;
-             } //  end of input validation    
+        } //  end of input validation    
         if(quantity < 0){ // validation for negative numbers
                     System.out.println("invalid");
 
                     j--;
                 } 
-              if (quantity>10)
+              if (quantity>espressostocks)
 {
-                     System.out.println("Not enough stocks (Espresso left = 10)");
+                     System.out.println("Not enough stocks (Espresso left = "+espressostocks +" ");
                      j--;
                     }
             } //end of for loop 
                 itemname="Espresso =    "+quantity+"            --          P"+espresso*quantity+"\n";
                 items = items+itemname;
                 total = total + quantity*espresso;
+                System.out.println("Espresso left = "+stocks);
+                espressostocks = stocks;
                 System.out.println("Initial Payment: P"+total); 
             } // end of choice A    
            
@@ -76,9 +84,10 @@ public class coffeeshop {
 
         for(int j = 0; j <1; j++){
                     System.out.print("Quantity: ");
-                    quantity=0;
-         if(input.hasNextInt()){
+                    quantity=0; 
+         if(input.hasNextInt()){ // input valid for B
                     quantity = input.nextInt();
+                    stocks =  cappuccinostocks-quantity;
         }else{
                     System.out.println("Invalid, please enter numbers: ");
 
@@ -89,26 +98,29 @@ public class coffeeshop {
                     System.out.println("invalid");
                     j--;
                 }
-        if (quantity>5)
+        if (quantity>cappuccinostocks)
 {
-                     System.out.println("Not enough stocks (Cappuccino left = 5)");
+                     System.out.println("Not enough stocks (Cappuccino left = "+cappuccinostocks+" ");
                      j--;
                     }
                } 
                 itemname="Cappuccino =  "+quantity+"            --          P"+cappuccino*quantity+"\n";
                 items = items+itemname;
                 total = total + quantity*cappuccino;
+                System.out.println("Cappuccino left= "+stocks);
+                cappuccinostocks = stocks;
                 System.out.println("Initial Payment: P"+total);
             } // end of choice B
-            
+
         else if (choice == 'c' || choice =='C'){
                     System.out.println("You ordered Latte!");
                     
     for(int j = 0; j <1; j++){   
                     System.out.print("Quantity: ");
                     quantity=0;  // reset the variable to zero 
-        if(input.hasNextInt()){
+        if(input.hasNextInt()){  // input valid for C
                     quantity = input.nextInt();
+                    stocks = lattestocks-quantity;
                 }     
         else{
                     System.out.println("Invalid, please enter numbers: ");
@@ -121,16 +133,17 @@ public class coffeeshop {
 
                     j--;
                }
-        if (quantity>3)
+        if (quantity>lattestocks)
 {
-                     System.out.println("Not enough stocks (Espresso left = 3)");
+                     System.out.println("Not enough stocks (Latte left = "+lattestocks);
                      j--;
                     }     
-                    
         } // end of for loop
                   itemname="Latte =       "+quantity+"            --          P"+latte*quantity+"\n";
                   items = items+itemname;
-                  total = total + quantity*latte;
+                  total = total + quantity*latte; 
+                  System.out.println("Latte left = "+stocks);
+                  lattestocks = stocks;
                   System.out.println("Initial Payment: P"+total); 
             } // end of choice c
         else if (choice=='x'){
@@ -143,29 +156,29 @@ public class coffeeshop {
                   i--;
             }
         }        
-    } // end of method order  
+    } // end of method order();
     public static void again(){ // method for yes or no
         while(true){
               System.out.print("Order again? (y/n): ");
               char again = input.next().charAt(0); 
         if(again == 'y' || again == 'Y'){
               order();
+
             }
         else if(again == 'n' || again == 'N') {
               bill();
             }    
         } // end of while loop
-    } //end of method again()
-    
-    // method for billing 
-    public static void bill(){
-            money =0;
+    } //end of again(); 
+  
+    public static void bill(){  // method for billing 
+            money =0; 
             System.out.println();
             System.out.println("Total bill: P"+total);
          
     for (int i = 0; i<1; i++){    
                 System.out.print("Your money please: P");
-        if (input.hasNextInt()){ // for validation    
+        if (input.hasNextInt()){ // input validation for money    
                 money = input.nextInt();
                 
         if(money<total){ // validation for insuficient money 
@@ -181,7 +194,7 @@ public class coffeeshop {
             i--;
             money=0;
         }
-         } // end of validation   
+         } // end of input validation   
         else{
                System.out.println("Something went wrong ! "); 
                i--;
@@ -190,7 +203,7 @@ public class coffeeshop {
       } // end of for loop
    } // end of method bill()
     
- public static void receipt(){ 
+ public static void receipt(){ // receipt method
      System.out.println();
      System.out.println("_______________________________________________\n");
 
