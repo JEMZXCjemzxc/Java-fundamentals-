@@ -189,7 +189,11 @@ public class coffeeshop {
             }
         else if(again == 'n' || again == 'N') {
               bill();
-            }    
+            }
+        else{ 
+            System.out.println("Y for yes, N for No");
+            again();
+            }
         } // end of while loop
     } //end of again(); 
   
