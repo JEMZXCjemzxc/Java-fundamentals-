@@ -7,99 +7,89 @@ public class ATMFINALS {
     static int atmnum, pin, choice;
     static double balance = 10000, withdraw, deposit, total1,total2;
     static char checkbalance; 
-    
     public static void main(String[] args) {     
      
        do {      
         for (int i =0; i<1; i++){
-        System.out.print("Enter Account Number : ");
+                    System.out.print("Enter Account Number : ");
         if (scanner.hasNextInt()){
-        atmnum = scanner.nextInt();
+                    atmnum = scanner.nextInt();
         }else {
-            System.out.println("Invalid input ! ");
-            scanner.next();
-            i--;
+                    System.out.println("Invalid input ! ");
+                    scanner.next();
+                    i--;
         }
-      }
+      } // end of input validation for acount number
         for(int i =0; i<1; i++){
-        System.out.print("Enter Pin : ");
+            System.out.print("Enter Pin : ");
         if (scanner.hasNextInt()){
-        pin = scanner.nextInt();
+            pin = scanner.nextInt();
         }else{
-            System.out.println("Invalid input ! ");
-            scanner.next();
-            i--;
+                    System.out.println("Invalid input ! ");
+                    scanner.next();
+                    i--;
         }
-      }
-        
-        if((atmnum == atmnumber )&& ( pin == atmpin)) {
-            choices();
-            break;
-        } else {
-            System.out.println("Can't find account ! ");
+       } // end of input validation for pin 
+        if((atmnum == atmnumber )&& ( pin == atmpin)) { // if atmnum is equal to atmnum this will run
+                    choices();
+                    break;
+        } else { // ug di pariha mu run ni 
+                    System.out.println("Can't find account ! ");
         }
-
        } while(true); // end of do while
-     
     } // end of main 
-
     static void choices(){
-            System.out.println("\n---------- Welcome to ATM machine ---------");
-            System.out.println("1. Check Available Balance");
-            System.out.println("2. Withdraw Amount");
-            System.out.println("3. Deposit Amount");
-            System.out.println("4. View Transactions statement");
-            System.out.println("5. Exit \n ");
-            machine();  // call the method machine  
-    }
+                    System.out.println("\n---------- Welcome to ATM machine ---------");
+                    System.out.println("1. Check Available Balance");
+                    System.out.println("2. Withdraw Amount");
+                    System.out.println("3. Deposit Amount");
+                    System.out.println("4. View Transactions statement");
+                    System.out.println("5. Exit \n ");
+                    machine();  // call the method machine  
+      }
     
     static void machine(){
-      
       for(int i =0; i<1; i++){ // first iya ni basahon 
-      System.out.print("Enter your choice : ");
-      
+                    System.out.print("Enter your choice : ");
       if(scanner.hasNextInt()){ // if ang scanner naay int mu run ni 
-          choice = scanner.nextInt();
-               
+                    choice = scanner.nextInt();
        if(choice <0) { // if choice kay negative, mu run ni
-          System.out.println("number can't be negative! ");
-          i--; // para sa infinite for loop
+                    System.out.println("number can't be negative! ");
+                    i--; // para sa infinite for loop
          }
       }     
-      else { // if mu input nga wala sa lima ka choices mu run ni
-          System.out.println("Not in the choices ! ");
-          i--;
-          scanner.next();
-      }
+        else { // if mu input nga wala sa lima ka choices mu run ni
+                    System.out.println("Not in the choices ! ");
+                    i--;
+                    scanner.next();
+        }
      } // end of input validation for loop
       
-    switch(choice) {
-        case 1:  // balance
-                        System.out.println("Available Balance: P"+balance+"\n");
-                        choices();
+switch(choice) {
+        case 1:  // balance amount
+                    System.out.println("Available Balance: P"+balance+"\n");
+                    choices();
                         
-        case 2:  // withdraw 
-
+        case 2:  // withdraw balance
               do {
-                   if(balance == 0){ // if balance is zero this will run
-                        System.out.println("\nOut of balance !! ");
-                        System.out.println("BALANCE = "+balance);
-                        choices();
-                    }
-                  
-                        System.out.print("Check balance first? (y/n) : ");
-                        checkbalance = scanner.next().charAt(0);
+                if(balance == 0){ // if balance is zero this will run
+                    System.out.println("\nOut of balance !! ");
+                    System.out.println("BALANCE = "+balance);
+                    choices();
+                  }                  
+                    System.out.print("Check balance first? (y/n) : ");
+                    checkbalance = scanner.next().charAt(0);
                     
-                    if (checkbalance == 'Y' || checkbalance == 'y' ){
-                        System.out.println("\nBalance : P"+balance);
-                        break; // mu break ang while loop then mu dritso sa for loop i sa ubos
+                if (checkbalance == 'Y' || checkbalance == 'y' ){
+                    System.out.println("\nBalance : P"+balance);
+                    break; // mu break ang while loop then mu dritso sa for loop i sa ubos
                     }
-                    else if (checkbalance == 'n' || checkbalance == 'N'){
+                else if (checkbalance == 'n' || checkbalance == 'N'){
                         // void 
-                        break; // mu break ang while loop then mu dritso sa for loop i sa ubos
+                    break; // mu break ang while loop then mu dritso sa for loop i sa ubos
                     }
-                    else {
-                        System.out.println("Invalid input ! ");
+                else {
+                    System.out.println("Invalid input ! ");
                     }  
                     }while(true); // infinite loop for yes or no 
     
@@ -107,35 +97,33 @@ public class ATMFINALS {
         for(int i= 0; i<1; i++){
    
             for(int j =0; j<1; j++){ 
-                 System.out.println("How much you want to withdraw?");
-                 System.out.print("(Enter the amount or type ( 0 ) to cancel) : P");
+                    System.out.println("How much you want to withdraw?");
+                    System.out.print("(Enter the amount or type ( 0 ) to cancel) : P");
               if(scanner.hasNextDouble()){ 
                 withdraw = scanner.nextDouble();
                }
                else {
-                   System.out.println("Invalid input !"); 
+                    System.out.println("Invalid input !"); 
                    scanner.next();
                    j--;
                }
-              } // end of J 
+              } // end of for loop j
               
               if (withdraw > balance){ // validation for insuficient balance
                     System.out.println("Insuficient Balance ! ");                 
                     i--;                   
-                }
-              
+                } 
                 else if (withdraw < 0){ // validation for negative nums
                     System.out.println("numbers can't be negative");
                     i--;
-                }
-                
+                }   
                 else if( withdraw<500 && withdraw>1 ) { // validation for multiple of 500
                     System.out.println("Can't withdraw below P500");
                     i--;
                 }  
                 else if(withdraw == 0){
                     choices();
-                }
+                }   
                 
                 else {
                     System.out.println("\n------------------------------------------------------");
@@ -149,57 +137,56 @@ public class ATMFINALS {
                 }   
               } // end of for loop for i for case 2
           
-       case 3: // deposit
+        case 3: // deposit
            
-        for(int i =0; i <1; i++) {
+               for(int i =0; i <1; i++) {
             
-          for(int j =0; j<1; j++){
-                System.out.println("How much you want to deposit ? ");
-                System.out.print("(Enter the amount or type ( 0 ) to cancel) : ");
-            if(scanner.hasNextDouble()){
-                deposit = scanner.nextDouble();
+                 for(int j =0; j<1; j++){
+                    System.out.println("How much you want to deposit ? ");
+                    System.out.print("(Enter the amount or type ( 0 ) to cancel) : ");
+             if(scanner.hasNextDouble()){
+                    deposit = scanner.nextDouble();
                 }
             else {
-                System.out.println("Invalid Input ! ");
-                scanner.next();
-                j--;
+                    System.out.println("Invalid Input ! ");
+                    scanner.next();
+                    j--;
             }
             } // end of j 
           
-          if(deposit <0 ){
-                System.out.println("Number can't be negative");
-                i--;
+          if(deposit <0 ){ // validation for negative numbers
+                    System.out.println("Number can't be negative");
+                    i--;
           }
-          else if(deposit == 0){
-              choices();
+          else if(deposit == 0){ 
+                    choices(); // if sero is clicked go back to choices method
           }
           else {
-                System.out.println("\n------------------------------------------------------");
-                System.out.println("Successfully diposit P"+deposit+" to your account ! ");
-                System.out.println("Available balance : P"+(balance+deposit));
-                System.out.println("------------------------------------------------------\n");
-                balance = balance+deposit; // to assign a new value to balance
-                total2 = total2+deposit;
-                choices();
-          }
-            
+                    System.out.println("\n------------------------------------------------------");
+                    System.out.println("Successfully diposit P"+deposit+" to your account ! ");
+                    System.out.println("Available balance : P"+(balance+deposit));
+                    System.out.println("------------------------------------------------------\n");
+                    balance = balance+deposit; // to assign a new value to balance
+                    total2 = total2+deposit;
+                    choices();
+          }    
         } // end of for loop i for case 3
         
-              default: System.out.println("Not in the choices"); 
-              machine(); // ug wala sa five choices mu balik siya sa method machine 
+                     default: System.out.println("Not in the choices"); 
+                     machine(); // ug wala sa five choices mu balik siya sa method machine 
               
      case 4:   // statement 
-           System.out.println("-----------------------------");
-           System.out.println("Total withdrawn: P"+total1);
-           System.out.println("Total diposits: P"+total2);
-           System.out.println("-----------------------------");
-           choices();
+                    System.out.println("-----------------------------");
+                    System.out.println("Total withdrawn: P"+total1);
+                    System.out.println("Total diposits: P"+total2);
+                    System.out.println("-----------------------------");
+                    choices();
            
      case 5:
-           System.out.println("\n---------------------------------------------------------");
-           System.out.println("\nCollect your card ! \n");
-           System.out.println("--------------- Thank you Come again !! ---------------- \n");
-           System.exit(0);
+                    System.out.println("\n---------------------------------------------------------");
+                    System.out.println("\nCollect your card ! \n");
+                    System.out.println("--------------- Thank you Come again !! ---------------- \n");
+                    System.exit(0);
 } // end sa switch
             
     } // end sa static void machine 
