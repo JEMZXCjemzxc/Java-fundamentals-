@@ -289,7 +289,7 @@ public class coffeeshop {
                System.out.println(" -----------------Out Of Stocks--------------");
                //   againbool = false;
                orderbool=false;
-               System.exit(1); // to exit everything
+               System.exit(0); // to exit everything
        }
    else{
                greet();
