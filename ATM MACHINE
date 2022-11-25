@@ -1,4 +1,4 @@
-ackage jem;
+package jem;
 import java.util.Scanner;
 
 public class practice {
