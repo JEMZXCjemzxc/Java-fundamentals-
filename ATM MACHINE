@@ -1,0 +1,267 @@
+ackage jem;
+import java.util.Scanner;
+
+public class practice {
+  
+    static int Accnum,Accpin,choice, 
+            jemAccNum = 12345 , 
+            jemPin = 143,
+            angeloAccNum = 135, 
+            angeloPin=123;
+    static double withdraw,deposit,jemzxcBalance = 10000,angeloBalance = 5000; 
+    static Scanner scanner = new Scanner(System.in);
+    
+public static void main (String[] args) {
+    
+  /* This whole do while is for input validation for accnum and accpin */  
+do {  
+    for (int i =0; i<1; i++){
+                    System.out.print("Enter Account Number : ");
+        if (scanner.hasNextInt()){
+                    Accnum = scanner.nextInt();
+        }else {
+                    System.err.println("Invalid input ! ");
+                    scanner.next();
+                    i--;
+        }
+      } // end of input validation for account number
+    for(int i =0; i<1; i++){
+                    System.out.print("Enter Pin : ");
+        if (scanner.hasNextInt()){
+                    Accpin = scanner.nextInt();
+        }else{
+                    System.err.println("Invalid input ! ");
+                    scanner.next();
+                    i--;
+        }
+      } // end of input validation for account pin
+        
+     if(Accnum == jemAccNum && Accpin == jemPin){
+         System.out.println("\nWelcome Jemzxc ! ");
+         choice();  
+     }
+   else if(Accnum == angeloAccNum && Accpin == angeloPin){
+         System.out.println("\nWelcome Angelo ! ");
+         choice();  
+     }
+     else {
+         System.err.println("Can't Find Account ! ");
+     }
+}while(true); 
+       
+    }     // end of main 
+  
+static void choice(){
+         System.out.println("\n------------------------------");   
+         System.out.println("1. View Current Balance");
+         System.out.println("2. Withdraw");
+         System.out.println("3. Deposit");
+         System.out.println("4. Statement");
+         System.out.println("5. Exit Application");
+         System.out.println("------------------------------\n");
+         bank();
+}
+ static void bank(){
+            
+  for(int i =0; i<1; i++){ // first iya ni basahon 
+                    System.out.print("Enter your choice : ");
+   if(scanner.hasNextInt()){ // if ang scanner naay int mu run ni 
+                    choice = scanner.nextInt();
+       if(choice <0) { // if choice kay negative, mu run ni
+                    System.err.println("number can't be negative! ");
+                    i--; // para sa infinite for loop
+         }
+    }     
+   else { // if mu input ug (letter) nga wala sa lima ka choices mu run ni
+                    System.err.println("Not in the choices ! ");
+                    i--;
+                    scanner.next();
+        }
+     } // end of input validation for loop
+              
+switch(choice){
+  
+    case 1: 
+           if( Accnum == jemAccNum && Accpin == jemPin){
+                    System.out.println("\nAvailable balance : P"+jemzxcBalance);
+                    choice();
+          } 
+           else if ( Accnum == angeloAccNum && Accpin == angeloPin){
+                    System.out.println("\nAvailable balance : P"+angeloBalance);
+                    choice();
+          }
+         // end of case 1: balance
+           
+           
+  /* WITHDRAW */    
+    case 2: 
+          
+        if(jemzxcBalance == 0){ // if jemzxcbalance is zero this will run
+                    System.err.println("\nOut of balance !! ");
+                    System.out.println("BALANCE = P"+jemzxcBalance);
+                    choice();
+            } 
+   else if (angeloBalance == 0){ // if angelobalance is zero this will run
+                    System.err.println("\nOut of balance !! ");
+                    System.out.println("BALANCE = "+angeloBalance);
+                    choice();
+            } 
+       
+    for(int i= 0; i<1; i++){
+      for(int j =0; j<1; j++){ 
+        if     (Accnum == jemAccNum && Accpin == jemPin){
+                inputValidationWithdraw();
+                System.out.println("\nSuccessfully withdrew P"+withdraw+ " from your account ! ");
+                System.out.println("Available Balance is : P"+(jemzxcBalance-withdraw));
+                jemzxcBalance = jemzxcBalance-withdraw;  
+                choice();
+        }
+        
+   else if     (Accnum == angeloAccNum && Accpin == angeloPin){
+                inputValidationWithdraw();
+                System.out.println("\nSuccessfully withdrew P"+withdraw+ " from your account ! ");
+                System.out.println("Available Balance is : P"+(angeloBalance-withdraw));
+                angeloBalance = angeloBalance-withdraw;
+                choice();
+        }
+            } // end of j
+       } // end of i
+
+    
+    /* DEPOSIT */
+    case 3: 
+        
+        /* for jemzxc */
+        if     (Accnum == jemAccNum && Accpin == jemPin){
+                inputValidationDeposit();
+                System.out.println("\nSuccessfully depositted P"+deposit+ " to your account ! ");
+                System.out.println("Your Available Balance is : P"+(jemzxcBalance+deposit));
+                jemzxcBalance = jemzxcBalance+deposit;  
+                choice();
+                }
+        
+        /* for angelo */
+   else if     (Accnum == angeloAccNum && Accpin == angeloPin){
+                inputValidationDeposit();
+                System.out.println("\nSuccessfully depositted P"+deposit+ " to your account ! ");
+                System.out.println("Your Available Balance is : P"+(angeloBalance+deposit));
+                angeloBalance = angeloBalance+deposit;
+                choice();
+         }
+        // end of case 3: deposit
+        
+    case 4: // statement
+        System.out.println("Total withdrawn \n");
+        System.out.println("Total deposits \n");
+         
+    case 5: // exit 
+      if (Accnum == jemAccNum){
+        System.out.println("\n----- Thank you Jem -----");
+        System.out.println("     Collect your card ");
+      }
+      else if (Accnum == angeloAccNum){
+        System.out.println("\n----- Thank you Angelo -----");
+        System.out.println("    Collect your card ");
+        
+      }
+     System.exit(0);
+     default: 
+        /* ug mu enter ug number nga wala sa five choices */
+        System.err.println("Not in the choices ! ");
+        bank();
+        
+      } // end sa switch  
+    } // end of method bank
+
+ 
+  static void inputValidationWithdraw(){
+      
+        for(int i= 0; i<1; i++){ 
+         /* ako gi butangan ug inner for loop kay naay bug if wala ni  
+            like ang bug nga mu print ang numbers can't be negative 
+            bisag ako gi input is a character or string  
+            */
+            for(int j =0; j<1; j++){ 
+             
+                System.out.println("\nHow much you want to withdraw?");
+                System.out.print("Enter the amount or type ( 0 ) to cancel : P");
+                  
+              /* validation for invalid input */
+              if(scanner.hasNextDouble()){ 
+                    withdraw = scanner.nextDouble();
+               }
+               else {
+                    System.out.println("\nInvalid input !!"); 
+                    scanner.next();
+                    j--;
+               }
+              } // end of for loop j
+            
+              /*validation for insuficient balance */
+               if (withdraw > jemzxcBalance && withdraw > angeloBalance){ 
+                    System.out.println("\nInsuficient Balance !!");                 
+                    i--;                   
+                } 
+               
+               /* validation for negative nums */
+                else if (withdraw < 0){ 
+                    System.out.println("\nnumbers can't be negative !!");
+                    i--;
+                } 
+                
+                /* validation for multiple of 500 */
+                else if( withdraw<500 && withdraw>1 ) { 
+                    System.out.println("Can't withdraw below P500 !!");
+                    i--;
+                }  
+                /* if withdraw is lessthan or equals to zero */
+                else if(withdraw == 0){
+                    choice();
+                }
+
+   } // end of for loop i  
+  } // end of method inputValidationWithdraw  
+  
+  static void inputValidationDeposit(){
+      
+       for(int i= 0; i<1; i++){ 
+         /* ako gi butangan ug inner for loop kay naay bug if wala ni  
+            like ang bug nga mu print ang numbers can't be negative 
+            bisag ako gi input is a character or string  
+            */
+            for(int j =0; j<1; j++){ 
+                
+                System.out.println("\nHow much you want to deposit ? ");
+                System.out.print("Enter the amount or type ( 0 ) to cancel : P");
+                  
+              /* validation for invalid input */
+              if(scanner.hasNextDouble()){ 
+                    deposit = scanner.nextDouble();
+               }
+               else {
+                    System.out.println("\nInvalid input !"); 
+                    scanner.next();
+                    j--;
+               }
+              } // end of for loop j
+          
+               /* validation for negative nums */
+              if (deposit < 0){ 
+                    System.out.println("\nnumbers can't be negative");
+                    i--;
+                }          
+           /* if the money you want to deposit exceeds the limit 20,000 */
+                else if( deposit>20000 ) { 
+                    System.out.println("\nLimit of P20,000 per day");
+                    i--;
+                }  
+                /* if you type zero */
+                else if(deposit == 0){
+                    choice();
+                }
+               
+  } // end of for loop i 
+  
+  } // end of method inputValidationDeposit
+ } // end of class
+    
