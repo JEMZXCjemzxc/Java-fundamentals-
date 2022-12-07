@@ -1,7 +1,8 @@
-package jem;
+
+package atm;
 import java.util.Scanner;
 
-public class atm{
+public class Atm{
     
    /* this is how to print colored text 
     Declaring ANSI_RESET so that we can reset the color  */
@@ -111,11 +112,9 @@ switch(choice){
   /* WITHDRAW */  
     
     
-    
-    case 2: 
-    
+case 2: 
           
-     if(jemzxcBalance == 0){ // if jemzxcbalance is zero this will run
+    if(jemzxcBalance == 0){ // if jemzxcbalance is zero this will run
                     System.out.println(ANSI_RED+"\nZero balance !! "+ANSI_RESET);
                     System.out.println("BALANCE = P"+jemzxcBalance);
                     choice();
@@ -152,11 +151,11 @@ switch(choice){
                 total1 = total1+withdraw;
                 choice();
         }
-            } // end of j
-       } // end of i
+      } // end of j
+    } // end of i
 
     /* DEPOSIT */
-    case 3: 
+case 3: 
         
         /* for jemzxc */
         if     (Accnum == jemAccNum && Accpin == jemPin){
@@ -179,28 +178,28 @@ switch(choice){
          }
         // end of case 3: deposit
         
-    case 4: // statement
+case 4: // statement
                 System.out.println("\nTotal withdrawn : "+ANSI_RED+"P"+total1+""+ANSI_RESET);
                 System.out.println("Total deposits : "+ANSI_RED+"P"+total2+""+ANSI_RESET);
                 choice();
          
-    case 5: // exit 
+case 5: // exit 
       if (Accnum == jemAccNum){
                 System.out.println("\n      >>>>>> Thank you Jemzxc <<<<<<");
                 System.out.println("             Collect your card \n");
-                total1 =0; /* to reset the total withdrawn after logout */
-                total2=0;  /* to reset the total deposited after logout */
-                login();
+               // total1 =0; /* to reset the total withdrawn after logout */
+                //total2=0;  /* to reset the total deposited after logout */
+                System.exit(0);
       }
       else if (Accnum == angeloAccNum){
                 System.out.println("\n      >>>>>> Thank you Angelo <<<<<<");
                 System.out.println("             Collect your card \n");
-                total1 =0;  /* to reset the total withdrawn after logout */
-                total2 =0;  /* to reset the total deposited after logout */
-                login();
+                //total1 =0;  /* to reset the total withdrawn after logout */
+                //total2 =0;  /* to reset the total deposited after logout */
+                System.exit(0);
         
       }  
-    default: 
+default: 
         /* ug mu enter ug number nga wala sa five choices */
                 System.out.println(ANSI_RED+"Not in the choices ! "+ANSI_RESET);
                 bank();
@@ -240,11 +239,17 @@ static void inputValidationWithdraw(){
                  j--;
              }
             
+            /* if ang inputed withdraw + totalwithdraw kay mas dako sa 15000 */
+            else if ((withdraw + total1) > 15000){ 
+                System.out.println(ANSI_RED+"\nYou can only withdraw limit of P15000 a day !"+ANSI_RESET);
+                System.out.println("\nTotal withdrawn: "+ANSI_RED+"P" +total1 +ANSI_RESET);
+                j--;
+            }            
               } // end of for loop j
 
  
                /* validation for negative nums */
-            else if (withdraw < 0){ 
+            if (withdraw < 0){ 
                 System.out.println(ANSI_RED+"\nnumbers can't be negative !!"+ANSI_RESET);
                 i--;
                 } 
