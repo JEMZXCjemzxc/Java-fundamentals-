@@ -1,8 +1,7 @@
-
 package jem;
 import java.util.Scanner;
 
-public class practice {
+public class atm{
     
    /* this is how to print colored text 
     Declaring ANSI_RESET so that we can reset the color  */
@@ -15,14 +14,13 @@ public class practice {
             angeloAccNum = 135, 
             angeloPin=123,
             total1,total2,withdraw,deposit;
-    static double
-           
-           jemzxcBalance = 50000,
-           angeloBalance = 20000; 
-    static Scanner scanner = new Scanner(System.in);
+    static double         
+            jemzxcBalance = 50000,
+            angeloBalance = 20000; 
+   static Scanner scanner = new Scanner(System.in);
     
 public static void main (String[] args) {
-          login();
+           login();
     } // end of main 
 
 /* LOGIN METHOD*/
@@ -33,7 +31,7 @@ static void login(){
 do {  
     for (int i =0; i<1; i++){
                     System.out.print("Enter Account Number : ");
-        if (scanner.hasNextInt()){
+        if (scanner.hasNextInt()){ /* for validation */
                     Accnum = scanner.nextInt();
         }else {
                     System.out.println(ANSI_RED+"Invalid input ! "+ANSI_RESET);
@@ -41,7 +39,8 @@ do {
                     i--;
         }
       } // end of input validation for account number
-    for(int i =0; i<1; i++){
+    
+    for(int i =0; i<1; i++){ /* validation for pin */
                     System.out.print("Enter Pin : ");
         if (scanner.hasNextInt()){
                     Accpin = scanner.nextInt();
@@ -83,12 +82,13 @@ static void choice(){
                     System.out.print("Enter your choice : ");
    if(scanner.hasNextInt()){ // if ang scanner naay int mu run ni 
                     choice = scanner.nextInt();
+                    
        if(choice <0) { // if choice kay negative, mu run ni
                     System.out.println(ANSI_RED+"number can't be negative! "+ANSI_RESET);
                     i--; // para sa infinite for loop
          }
     }     
-   else { // if mu input ug (letter) nga wala sa lima ka choices mu run ni
+            else { // if mu input ug (letter) nga wala sa lima ka choices mu run ni
                     System.out.println(ANSI_RED+"Not in the choices ! "+ANSI_RESET);
                     i--;
                     scanner.next();
@@ -108,20 +108,25 @@ switch(choice){
           }
          // end of case 1: balance
                   
-  /* WITHDRAW */    
+  /* WITHDRAW */  
+    
+    
+    
     case 2: 
+    
           
-        if(jemzxcBalance == 0){ // if jemzxcbalance is zero this will run
-                    System.err.println("\nOut of balance !! ");
+     if(jemzxcBalance == 0){ // if jemzxcbalance is zero this will run
+                    System.out.println(ANSI_RED+"\nZero balance !! "+ANSI_RESET);
                     System.out.println("BALANCE = P"+jemzxcBalance);
                     choice();
             } 
         else if (angeloBalance == 0){ // if angelobalance is zero this will run
-                    System.err.println("\nOut of balance !! ");
+                    System.err.println("\nZero balance !! ");
                     System.out.println("BALANCE = "+angeloBalance);
                     choice();
             } 
-        
+            
+            
       /* if you withdraw a total of 15000, you cannot withdraw again */
         else if(total1 >= 15000 ) {
             System.out.println(ANSI_RED+"\nYou can only withdraw limit of P15000 a day !"+ANSI_RESET);
@@ -183,11 +188,15 @@ switch(choice){
       if (Accnum == jemAccNum){
                 System.out.println("\n      >>>>>> Thank you Jemzxc <<<<<<");
                 System.out.println("             Collect your card \n");
+                total1 =0; /* to reset the total withdrawn after logout */
+                total2=0;  /* to reset the total deposited after logout */
                 login();
       }
       else if (Accnum == angeloAccNum){
                 System.out.println("\n      >>>>>> Thank you Angelo <<<<<<");
                 System.out.println("             Collect your card \n");
+                total1 =0;  /* to reset the total withdrawn after logout */
+                total2 =0;  /* to reset the total deposited after logout */
                 login();
         
       }  
@@ -198,6 +207,10 @@ switch(choice){
 
       } // end sa switch  
     } // end of method bank
+
+
+
+
 
 static void inputValidationWithdraw(){
       
@@ -210,24 +223,26 @@ static void inputValidationWithdraw(){
              
                 System.out.println("\nHow much you want to withdraw?");
                 System.out.print("Enter the amount or type ( 0 ) to cancel : P");
+   
                 
         /* validation for invalid input */
             if(scanner.hasNextInt()){ 
                     withdraw = scanner.nextInt();
                }
+             
             else {
                 System.out.println(ANSI_RED+"\nInvalid input !!"+ANSI_RESET); 
                 scanner.next();
                     j--;
                }
-              } // end of for loop j
+            if (withdraw > 15000){
+                 System.out.println(ANSI_RED+"\nYou can only withdraw limit of P15000 a day !"+ANSI_RESET);
+                 j--;
+             }
             
-              /*validation for insuficient balance */
-            if (withdraw > jemzxcBalance && withdraw > angeloBalance){ 
-                System.out.println(ANSI_RED+"\nInsuficient Balance !!"+ANSI_RESET);                 
-                i--;                   
-                } 
-               
+              } // end of for loop j
+
+ 
                /* validation for negative nums */
             else if (withdraw < 0){ 
                 System.out.println(ANSI_RED+"\nnumbers can't be negative !!"+ANSI_RESET);
@@ -247,6 +262,9 @@ static void inputValidationWithdraw(){
    } // end of for loop i  
   } // end of method inputValidationWithdraw  
   
+
+
+/* DEPOSIT */
   static void inputValidationDeposit(){
       
        for(int i= 0; i<1; i++){ 
@@ -275,10 +293,7 @@ static void inputValidationWithdraw(){
                 System.out.println(ANSI_RED+"\nnumbers can't be negative"+ANSI_RESET);
                 i--;
             }          
-            else if(total2 > 20000){
-                System.out.println(ANSI_RED+"\nLimit of P20,000 per day"+ANSI_RESET);
-                i--;
-            }     
+               
                 /* if you type zero */
             else if(deposit == 0){
                 choice();
@@ -288,4 +303,3 @@ static void inputValidationWithdraw(){
   
   } // end of method inputValidationDeposit
  } // end of class
-    
