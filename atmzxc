@@ -183,11 +183,13 @@ switch(choice){
       if (Accnum == jemAccNum){
                 System.out.println("\n      >>>>>> Thank you Jemzxc <<<<<<");
                 System.out.println("             Collect your card \n");
+                total1 =0;
                 login();
       }
       else if (Accnum == angeloAccNum){
                 System.out.println("\n      >>>>>> Thank you Angelo <<<<<<");
                 System.out.println("             Collect your card \n");
+                total1 =0;
                 login();
         
       }  
