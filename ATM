@@ -7,6 +7,7 @@ public class Main{
     Declaring ANSI_RESET so that we can reset the color  */
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\033[0;32m";   // GREEN
     
     static int Accnum,Accpin,choice, 
             jemAccNum = 12345 , 
@@ -185,14 +186,14 @@ case 4: // statement
 case 5: // exit 
       if (Accnum == jemAccNum){
                 System.out.println("\n      >>>>>> Thank you Jemzxc <<<<<<");
-                System.out.println("             Collect your card \n");
+                System.out.println(ANSI_GREEN+"             Collect your card \n"+ANSI_RESET);
                // total1 =0; /* to reset the total withdrawn after logout */
                 //total2=0;  /* to reset the total deposited after logout */
                 System.exit(0);
       }
       else if (Accnum == angeloAccNum){
                 System.out.println("\n      >>>>>> Thank you Angelo <<<<<<");
-                System.out.println("             Collect your card \n");
+                System.out.println(ANSI_GREEN+"             Collect your card \n"+ANSI_RESET);
                 //total1 =0;  /* to reset the total withdrawn after logout */
                 //total2 =0;  /* to reset the total deposited after logout */
                 System.exit(0);
