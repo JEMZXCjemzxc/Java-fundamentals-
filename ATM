@@ -1,7 +1,7 @@
-package pogi;
+package atm;
 import java.util.Scanner;
 
-public class Main{
+public class Atm{
     
    /* this is how to print colored text 
     Declaring ANSI_RESET so that we can reset the color  */
@@ -13,11 +13,13 @@ public class Main{
             jemAccNum = 12345 , 
             jemPin = 143,
             angeloAccNum = 135, 
-            angeloPin=123,
-            total1,total2,withdraw,deposit;
+            angeloPin=123;
+            
     static double         
             jemzxcBalance = 50000,
-            angeloBalance = 20000; 
+            angeloBalance = 20000,
+            withdraw,deposit,
+            total1,total2;
    static Scanner scanner = new Scanner(System.in);
     
 public static void main (String[] args) {
@@ -27,7 +29,7 @@ public static void main (String[] args) {
 /* LOGIN METHOD*/
 static void login(){ 
     
-                    System.out.println("----------- WELCOME TO THE UNDERGROUND BANK -----------\n");
+                    System.out.println("----------- WELCOME TO THE BANK -----------\n");
   /* This whole do while is for input validation for accnum and accpin */  
 do {  
     for (int i =0; i<1; i++){
@@ -181,6 +183,13 @@ case 3:
 case 4: // statement
                 System.out.println("\nTotal withdrawn : "+ANSI_RED+"P"+total1+""+ANSI_RESET);
                 System.out.println("Total deposits : "+ANSI_RED+"P"+total2+""+ANSI_RESET);
+                
+                if (Accnum == jemAccNum){
+                     System.out.println("New Available Balance : "+ANSI_RED+"P"+jemzxcBalance+""+ANSI_RESET);
+                }
+                else if (Accnum == angeloAccNum){
+                     System.out.println("New Available Balance : "+ANSI_RED+"P"+angeloBalance+""+ANSI_RESET);
+                } 
                 choice();
          
 case 5: // exit 
@@ -219,14 +228,14 @@ static void inputValidationWithdraw(){
             bisag ako gi input is a character or string  
             */
         for(int j =0; j<1; j++){ 
-             
+            
                 System.out.println("\nHow much you want to withdraw?");
                 System.out.print("Enter the amount or type ( 0 ) to cancel : P");
    
                 
         /* validation for invalid input */
-            if(scanner.hasNextInt()){ 
-                    withdraw = scanner.nextInt();
+            if(scanner.hasNextDouble()){ 
+                    withdraw = scanner.nextDouble();
                }
              
             else {
@@ -283,8 +292,8 @@ static void inputValidationWithdraw(){
                 System.out.print("Enter the amount or type ( 0 ) to cancel : P");
                   
               /* validation for invalid input */
-            if(scanner.hasNextInt()){ 
-                    deposit = scanner.nextInt();
+            if(scanner.hasNextDouble()){ 
+                    deposit = scanner.nextDouble();
                }
             else {
                 System.out.println(ANSI_RED+"\nInvalid input !"+ANSI_RESET); 
@@ -308,3 +317,5 @@ static void inputValidationWithdraw(){
   
   } // end of method inputValidationDeposit
  } // end of class
+ 
+ // bag o ni 
