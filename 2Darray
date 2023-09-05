@@ -1,0 +1,110 @@
+package jemzxctutorial;
+import java.util.Scanner;
+
+public class Jemzxctutorial {
+    
+    
+        static int rows, cols;
+	public static void main(String[] args) {
+	
+            Scanner scan = new Scanner(System.in);
+        
+
+//2D array user input 
+String choice = "";
+  do {
+       
+           for(int whole =0 ; whole <1; whole++){
+               for(int i=0; i<1; i++){
+                System.out.print("Enter number of rows: ");
+            // validation
+                if (scan.hasNextInt()){
+                     rows = scan.nextInt();       
+                    if(rows < 0){
+                        System.out.println("cant input negative");
+                        i--;
+                    }
+                }
+                else {
+                    System.err.println("invalid input! ");
+                    scan.next();
+                    i--;
+                }
+          
+                
+        } // end of vallidation
+                
+      for(int j=0; j<1; j++){
+                System.out.print("Enter number of column: ");
+            // validation
+                if (scan.hasNextInt()){
+                     cols = scan.nextInt();       
+                    if(cols < 0){
+                        System.out.println("cant input negative");
+                        j--;
+                    }
+                }
+                else {
+                    System.err.println("invalid input! ");
+                    scan.next();
+                    j--;
+                }      
+                
+        } // end of vallidation
+               
+            int[][] num = new int[rows][cols];
+            
+            for(int row =0; row < rows; row++){
+                
+                System.out.print("Enter elements of row "+ row +": ");
+                
+                for (int col = 0;  col < cols; col++){
+                    
+                    if(scan.hasNextInt()){
+                        num[row][col] = scan.nextInt(); //while this loop is true
+                    }
+                    else {
+                        System.err.println("invalid input!");
+                        row--;
+                        scan.next();
+                    }
+                        
+                }
+            }
+           
+            System.out.println("Array of elements: ");  
+            
+            for (int row=0; row<rows; row++){
+                
+                for(int col =0; col<cols; col++){
+                    System.out.print(" "+num[row][col]);
+                }
+                
+                System.out.println();
+            }
+               
+           }
+
+           do {
+                System.out.println("Do you want to continue? ");
+                choice = scan.next();
+                if(choice.equalsIgnoreCase("y")){
+                    break;
+                }else if(choice.equalsIgnoreCase("n")){
+                    System.out.println("Thank you for using 2d array!");
+                    System.exit(0);
+                }
+                else{
+                    System.out.println("Invalid input!");
+                }
+                
+           } while(!choice.equalsIgnoreCase("y")|| !choice.equalsIgnoreCase("n") );
+          
+  }while(choice.equalsIgnoreCase("y"));
+            
+
+            
+                
+                	
+        }
+}
